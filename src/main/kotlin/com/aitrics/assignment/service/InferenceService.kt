@@ -69,41 +69,41 @@ class InferenceService(
 }
 
 data class InferenceResponse(
-    @get:JsonProperty("patient_id")
+    @JsonProperty("patient_id")
     @field:Schema(name = "patient_id")
     val patientId: String,
 
-    @get:JsonProperty("risk_level")
+    @JsonProperty("risk_level")
     @field:Schema(name = "risk_level")
     val riskLevel: String,
 
-    @get:JsonProperty("triggered_rules")
+    @JsonProperty("triggered_rules")
     @field:Schema(name = "triggered_rules")
     val triggeredRules: List<String>,
 
-    @get:JsonProperty("vital_averages")
+    @JsonProperty("vital_averages")
     @field:Schema(name = "vital_averages")
     val vitalAverages: Map<String, Double>,
 
-    @get:JsonProperty("data_points_analyzed")
+    @JsonProperty("data_points_analyzed")
     @field:Schema(name = "data_points_analyzed")
     val dataPointsAnalyzed: Int,
 
-    @get:JsonProperty("time_range")
+    @JsonProperty("time_range")
     @field:Schema(name = "time_range")
     val timeRange: TimeRange,
 
-    @get:JsonProperty("evaluated_at")
+    @JsonProperty("evaluated_at")
     @field:Schema(name = "evaluated_at")
     val evaluatedAt: OffsetDateTime
 )
 
 data class TimeRange(
-    @get:JsonProperty("from")
+    @JsonProperty("from")
     @field:Schema(name = "from")
     val from: OffsetDateTime,
 
-    @get:JsonProperty("to")
+    @JsonProperty("to")
     @field:Schema(name = "to")
     val to: OffsetDateTime
 )

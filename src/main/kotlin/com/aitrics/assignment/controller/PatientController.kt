@@ -63,67 +63,67 @@ class PatientController(
 }
 
 data class PatientRegisterRequest(
-    @get:JsonProperty("patient_id")
+    @JsonProperty("patient_id")
     @field:Schema(name = "patient_id", description = "환자 고유 식별자")
     @field:NotBlank(message = "patient_id는 필수입니다.")
     val patientId: String,
 
-    @get:JsonProperty("name")
+    @JsonProperty("name")
     @field:Schema(name = "name", description = "환자 성명")
     @field:NotBlank(message = "name은 필수입니다.")
     val name: String,
 
-    @get:JsonProperty("gender")
+    @JsonProperty("gender")
     @field:Schema(name = "gender", description = "성별 (M/F)")
     @field:NotBlank(message = "gender는 필수입니다.")
     val gender: String,
 
-    @get:JsonProperty("birth_date")
+    @JsonProperty("birth_date")
     @field:Schema(name = "birth_date", description = "생년월일 (YYYY-MM-DD)")
     @field:NotNull(message = "birth_date는 필수입니다.")
     val birthDate: LocalDate
 )
 
 data class PatientUpdateRequest(
-    @get:JsonProperty("name")
+    @JsonProperty("name")
     @field:Schema(name = "name", description = "환자 성명")
     @field:NotBlank(message = "name은 필수입니다.")
     val name: String,
 
-    @get:JsonProperty("gender")
+    @JsonProperty("gender")
     @field:Schema(name = "gender", description = "성별 (M/F)")
     @field:NotBlank(message = "gender는 필수입니다.")
     val gender: String,
 
-    @get:JsonProperty("birth_date")
+    @JsonProperty("birth_date")
     @field:Schema(name = "birth_date", description = "생년월일 (YYYY-MM-DD)")
     @field:NotNull(message = "birth_date는 필수입니다.")
     val birthDate: LocalDate,
 
-    @get:JsonProperty("version")
+    @JsonProperty("version")
     @field:Schema(name = "version", description = "데이터 버전 (낙관적 락 용)")
     @field:NotNull(message = "version은 필수입니다.")
     val version: Long
 )
 
 data class PatientResponse(
-    @get:JsonProperty("patient_id")
+    @JsonProperty("patient_id")
     @field:Schema(name = "patient_id")
     val patientId: String,
 
-    @get:JsonProperty("name")
+    @JsonProperty("name")
     @field:Schema(name = "name")
     val name: String,
 
-    @get:JsonProperty("gender")
+    @JsonProperty("gender")
     @field:Schema(name = "gender")
     val gender: String,
 
-    @get:JsonProperty("birth_date")
+    @JsonProperty("birth_date")
     @field:Schema(name = "birth_date")
     val birthDate: LocalDate,
 
-    @get:JsonProperty("version")
+    @JsonProperty("version")
     @field:Schema(name = "version")
     val version: Long
 ) {
