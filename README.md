@@ -11,8 +11,8 @@
 프로젝트 루트 폴더에서 아래 명령어를 실행하면 애플리케이션이 8080 포트에서 실행됩니다.
 
 ```bash
-docker build -t aitrics-assignment .
-docker run -p 8080:8080 aitrics-assignment
+docker build --no-cache -t aitrics-assignment .
+docker run -d -p 8080:8080 --name aitrics-assignment aitrics-assignment
 ```
 
 ## 📖 API 문서 (Swagger)
