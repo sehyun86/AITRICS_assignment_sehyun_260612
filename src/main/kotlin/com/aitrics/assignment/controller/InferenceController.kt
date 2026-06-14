@@ -3,6 +3,7 @@ package com.aitrics.assignment.controller
 import com.aitrics.assignment.service.InferenceResponse
 import com.aitrics.assignment.service.InferenceService
 import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
@@ -25,6 +26,7 @@ class InferenceController(
 }
 
 data class InferenceRequest(
+    @field:Schema(name = "patient_id", description = "환자 고유 식별자")
     @field:NotBlank(message = "patient_id는 필수입니다.")
     val patientId: String
 )

@@ -3,6 +3,7 @@ package com.aitrics.assignment.controller
 import com.aitrics.assignment.domain.Patient
 import com.aitrics.assignment.service.PatientService
 import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
@@ -61,32 +62,45 @@ class PatientController(
 }
 
 data class PatientRegisterRequest(
+    @field:Schema(name = "patient_id", description = "환자 고유 식별자")
     @field:NotBlank(message = "patient_id는 필수입니다.")
     val patientId: String,
+    @field:Schema(name = "name", description = "환자 성명")
     @field:NotBlank(message = "name은 필수입니다.")
     val name: String,
+    @field:Schema(name = "gender", description = "성별 (M/F)")
     @field:NotBlank(message = "gender는 필수입니다.")
     val gender: String,
+    @field:Schema(name = "birth_date", description = "생년월일 (YYYY-MM-DD)")
     @field:NotNull(message = "birth_date는 필수입니다.")
     val birthDate: LocalDate
 )
 
 data class PatientUpdateRequest(
+    @field:Schema(name = "name", description = "환자 성명")
     @field:NotBlank(message = "name은 필수입니다.")
     val name: String,
+    @field:Schema(name = "gender", description = "성별 (M/F)")
     @field:NotBlank(message = "gender는 필수입니다.")
     val gender: String,
+    @field:Schema(name = "birth_date", description = "생년월일 (YYYY-MM-DD)")
     @field:NotNull(message = "birth_date는 필수입니다.")
     val birthDate: LocalDate,
+    @field:Schema(name = "version", description = "데이터 버전 (낙관적 락 용)")
     @field:NotNull(message = "version은 필수입니다.")
     val version: Long
 )
 
 data class PatientResponse(
+    @field:Schema(name = "patient_id")
     val patientId: String,
+    @field:Schema(name = "name")
     val name: String,
+    @field:Schema(name = "gender")
     val gender: String,
+    @field:Schema(name = "birth_date")
     val birthDate: LocalDate,
+    @field:Schema(name = "version")
     val version: Long
 ) {
     companion object {

@@ -4,6 +4,7 @@ import com.aitrics.assignment.domain.Vital
 import com.aitrics.assignment.domain.VitalType
 import com.aitrics.assignment.service.VitalService
 import io.swagger.v3.oas.annotations.Operation
+import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import jakarta.validation.constraints.NotBlank
@@ -53,23 +54,33 @@ class VitalController(
 }
 
 data class VitalUpsertRequest(
+    @field:Schema(name = "patient_id", description = "환자 고유 식별자")
     @field:NotBlank(message = "patient_id는 필수입니다.")
     val patientId: String,
+    @field:Schema(name = "recorded_at", description = "측정 시점 (ISO 8601)")
     @field:NotNull(message = "recorded_at은 필수입니다.")
     val recordedAt: OffsetDateTime,
+    @field:Schema(name = "vital_type", description = "Vital 유형 (HR, RR, SBP, DBP, SpO2, BT)")
     @field:NotNull(message = "vital_type은 필수입니다.")
     val vitalType: VitalType,
+    @field:Schema(name = "value", description = "측정값")
     @field:NotNull(message = "value는 필수입니다.")
     val value: Double,
+    @field:Schema(name = "version", description = "데이터 버전 (INSERT 시 1, UPDATE 시 DB 버전)")
     @field:NotNull(message = "version은 필수입니다.")
     val version: Long
 )
 
 data class VitalResponse(
+    @field:Schema(name = "patient_id")
     val patientId: String,
+    @field:Schema(name = "recorded_at")
     val recordedAt: OffsetDateTime,
+    @field:Schema(name = "vital_type")
     val vitalType: VitalType,
+    @field:Schema(name = "value")
     val value: Double,
+    @field:Schema(name = "version")
     val version: Long
 ) {
     companion object {
@@ -84,13 +95,18 @@ data class VitalResponse(
 }
 
 data class VitalListResponse(
+    @field:Schema(name = "patient_id")
     val patientId: String,
+    @field:Schema(name = "vital_type")
     val vitalType: VitalType?,
+    @field:Schema(name = "items")
     val items: List<VitalItem>
 )
 
 data class VitalItem(
+    @field:Schema(name = "recorded_at")
     val recordedAt: OffsetDateTime,
+    @field:Schema(name = "value")
     val value: Double
 ) {
     companion object {

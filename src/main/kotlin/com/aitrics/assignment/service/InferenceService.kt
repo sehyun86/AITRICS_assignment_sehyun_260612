@@ -6,6 +6,7 @@ import com.aitrics.assignment.domain.VitalType
 import com.aitrics.assignment.repository.PatientRepository
 import com.aitrics.assignment.repository.VitalRepository
 import com.aitrics.assignment.service.inference.*
+import io.swagger.v3.oas.annotations.media.Schema
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Service
 import java.time.OffsetDateTime
@@ -67,16 +68,25 @@ class InferenceService(
 }
 
 data class InferenceResponse(
+    @field:Schema(name = "patient_id")
     val patientId: String,
+    @field:Schema(name = "risk_level")
     val riskLevel: String,
+    @field:Schema(name = "triggered_rules")
     val triggeredRules: List<String>,
+    @field:Schema(name = "vital_averages")
     val vitalAverages: Map<String, Double>,
+    @field:Schema(name = "data_points_analyzed")
     val dataPointsAnalyzed: Int,
+    @field:Schema(name = "time_range")
     val timeRange: TimeRange,
+    @field:Schema(name = "evaluated_at")
     val evaluatedAt: OffsetDateTime
 )
 
 data class TimeRange(
+    @field:Schema(name = "from")
     val from: OffsetDateTime,
+    @field:Schema(name = "to")
     val to: OffsetDateTime
 )
