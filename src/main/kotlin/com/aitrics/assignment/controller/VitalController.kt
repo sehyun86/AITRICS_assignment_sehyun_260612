@@ -3,6 +3,7 @@ package com.aitrics.assignment.controller
 import com.aitrics.assignment.domain.Vital
 import com.aitrics.assignment.domain.VitalType
 import com.aitrics.assignment.service.VitalService
+import com.fasterxml.jackson.annotation.JsonProperty
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.Schema
 import io.swagger.v3.oas.annotations.tags.Tag
@@ -54,32 +55,50 @@ class VitalController(
 }
 
 data class VitalUpsertRequest(
+    @get:JsonProperty("patient_id")
     @field:Schema(name = "patient_id", description = "환자 고유 식별자")
     @field:NotBlank(message = "patient_id는 필수입니다.")
     val patientId: String,
+
+    @get:JsonProperty("recorded_at")
     @field:Schema(name = "recorded_at", description = "측정 시점 (ISO 8601)")
     @field:NotNull(message = "recorded_at은 필수입니다.")
     val recordedAt: OffsetDateTime,
+
+    @get:JsonProperty("vital_type")
     @field:Schema(name = "vital_type", description = "Vital 유형 (HR, RR, SBP, DBP, SpO2, BT)")
     @field:NotNull(message = "vital_type은 필수입니다.")
     val vitalType: VitalType,
+
+    @get:JsonProperty("value")
     @field:Schema(name = "value", description = "측정값")
     @field:NotNull(message = "value는 필수입니다.")
     val value: Double,
+
+    @get:JsonProperty("version")
     @field:Schema(name = "version", description = "데이터 버전 (INSERT 시 1, UPDATE 시 DB 버전)")
     @field:NotNull(message = "version은 필수입니다.")
     val version: Long
 )
 
 data class VitalResponse(
+    @get:JsonProperty("patient_id")
     @field:Schema(name = "patient_id")
     val patientId: String,
+
+    @get:JsonProperty("recorded_at")
     @field:Schema(name = "recorded_at")
     val recordedAt: OffsetDateTime,
+
+    @get:JsonProperty("vital_type")
     @field:Schema(name = "vital_type")
     val vitalType: VitalType,
+
+    @get:JsonProperty("value")
     @field:Schema(name = "value")
     val value: Double,
+
+    @get:JsonProperty("version")
     @field:Schema(name = "version")
     val version: Long
 ) {
@@ -95,17 +114,25 @@ data class VitalResponse(
 }
 
 data class VitalListResponse(
+    @get:JsonProperty("patient_id")
     @field:Schema(name = "patient_id")
     val patientId: String,
+
+    @get:JsonProperty("vital_type")
     @field:Schema(name = "vital_type")
     val vitalType: VitalType?,
+
+    @get:JsonProperty("items")
     @field:Schema(name = "items")
     val items: List<VitalItem>
 )
 
 data class VitalItem(
+    @get:JsonProperty("recorded_at")
     @field:Schema(name = "recorded_at")
     val recordedAt: OffsetDateTime,
+
+    @get:JsonProperty("value")
     @field:Schema(name = "value")
     val value: Double
 ) {
