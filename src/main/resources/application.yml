@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: aitrics-assignment
+  datasource:
+    url: jdbc:sqlite:database.db
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.community.dialect.SQLiteDialect
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:v6yB8?vX#G@zL2*kPq9!s5&mN4^jW1(zR7)uT3]xV0[cM8}
+    expiration-ms: 86400000 # 24 hours
+  vital-risk-time-window-hours: ${VITAL_RISK_TIME_WINDOW_HOURS:24}
+
+logging:
+  level:
+    com.aitrics.assignment: DEBUG
