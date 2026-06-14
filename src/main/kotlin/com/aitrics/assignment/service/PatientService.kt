@@ -42,6 +42,12 @@ class PatientService(
         return patientRepository.save(patient)
     }
 
+    @Transactional(readOnly = true)
+    fun getAllPatients(): List<Patient> {
+        return patientRepository.findAll()
+    }
+
+    @Transactional(readOnly = true)
     fun getPatient(patientId: String): Patient {
         return patientRepository.findById(patientId)
             .orElseThrow { BusinessException(ErrorCode.PATIENT_NOT_FOUND) }

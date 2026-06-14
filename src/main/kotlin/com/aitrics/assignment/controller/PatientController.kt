@@ -45,6 +45,19 @@ class PatientController(
         )
         return PatientResponse.from(patient)
     }
+
+    @Operation(summary = "전체 환자 목록 조회")
+    @GetMapping
+    fun getAllPatients(): List<PatientResponse> {
+        return patientService.getAllPatients().map { PatientResponse.from(it) }
+    }
+
+    @Operation(summary = "개별 환자 조회")
+    @GetMapping("/{patient_id}")
+    fun getPatient(@PathVariable("patient_id") patientId: String): PatientResponse {
+        val patient = patientService.getPatient(patientId)
+        return PatientResponse.from(patient)
+    }
 }
 
 data class PatientRegisterRequest(
